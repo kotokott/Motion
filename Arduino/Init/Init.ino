@@ -34,5 +34,7 @@ void loop() {
   imuRead(imu2);
   imuRead(imu3);
 
-  delay(3000);
+  readFromSerial();
+
+  //delay(3000);
 }
