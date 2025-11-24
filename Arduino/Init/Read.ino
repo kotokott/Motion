@@ -1,8 +1,8 @@
-#include "mpu9250.h"
+#include "mpu6500.h"
 #include <Wire.h>
 #include "Config.h"
 
-void imuRead(bfs::Mpu9250& imu) {
+void imuRead(bfs::Mpu6500& imu) {
   if (imu.Read()) {
     //acceleration
     float ax = imu.accel_x_mps2();
@@ -13,11 +13,6 @@ void imuRead(bfs::Mpu9250& imu) {
     float gx = imu.gyro_x_radps();
     float gy = imu.gyro_y_radps();
     float gz = imu.gyro_z_radps();
-
-    //magnitude
-    float mx = imu.mag_x_ut();
-    float my = imu.mag_y_ut();
-    float mz = imu.mag_z_ut();
 
     Serial.print("Acceleration: ");
     Serial.print(ax);
@@ -32,12 +27,5 @@ void imuRead(bfs::Mpu9250& imu) {
     Serial.print(gy);
     Serial.print(", ");
     Serial.println(gz);
-
-    Serial.print("Magnitude: ");
-    Serial.print(mx);
-    Serial.print(", ");
-    Serial.print(my);
-    Serial.print(", ");
-    Serial.println(mz);
   }
 }

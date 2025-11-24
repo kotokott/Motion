@@ -1,14 +1,14 @@
-#include "mpu9250.h"
+#include "mpu6500.h"
 #include <Wire.h>
 #include "Config.h"
 
-bfs::Mpu9250 imu1(&SPI, 17);
-bfs::Mpu9250 imu2(&SPI, 1);
-bfs::Mpu9250 imu3(&SPI, 5);
+bfs::Mpu6500 imu1(&SPI, 10);
+//bfs::Mpu9250 imu2(&SPI, 1);
+//bfs::Mpu9250 imu3(&SPI, 5);
 
-void imuConfig(bfs::Mpu9250& imu) {
+void imuConfig(bfs::Mpu6500& imu) {
   if (!imu.Begin()) {
-    Serial.println("MPU9250 init error. Please try again!");
+    Serial.println("MPU6500 init error. Please try again!");
     while (1) {}
   }
 
@@ -25,16 +25,16 @@ void setup() {
   SPI.begin();
 
   imuConfig(imu1);
-  imuConfig(imu2);
-  imuConfig(imu3);  
+  //imuConfig(imu2);
+  //imuConfig(imu3);  
 }
 
 void loop() {
   imuRead(imu1);
-  imuRead(imu2);
-  imuRead(imu3);
+  //imuRead(imu2);
+  //imuRead(imu3);
 
-  readFromSerial();
+  //readFromSerial();
 
-  //delay(3000);
+  delay(300);
 }
